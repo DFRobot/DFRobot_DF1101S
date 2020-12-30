@@ -10,7 +10,7 @@
  * @version  V1.0
  * @date  2020-07-16
  * @get from https://www.dfrobot.com
- * @url https://github.com/DFRobot/DFRobot_AS7341
+ * @url https://github.com/DFRobot/DFRobot_DF1101S
  */
 #include <DFRobot_DF1101S.h>
 #include <SoftwareSerial.h>
@@ -35,9 +35,9 @@ void setup(void){
   /*Open voice prompt, power-down save*/
   //df1101s.setPrompt(true);
   
-  /*Enter Recording mode */
+  /*Enter Recording mode*/
   df1101s.switchFunction(df1101s.RECORD);
-  /*Wait for the end of prompt tone/
+  /*Wait for the end of prompt tone*/
   delay(2000);
   /*Start recording*/
   df1101s.start();
