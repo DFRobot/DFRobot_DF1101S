@@ -11,7 +11,7 @@
  * @version  V1.0
  * @date  2020-07-16
  * @get from https://www.dfrobot.com
- * @url https://github.com/DFRobot/DFRobot_AS7341
+ * @url https://github.com/DFRobot/DFRobot_DF1101S
  */
 #include <DFRobot_DF1101S.h>
 #include <SoftwareSerial.h>
