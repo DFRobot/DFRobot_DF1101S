@@ -56,7 +56,7 @@ void loop(){
   df1101s.last();
   delay(3000);
   /*Play the specific file(FILE0000) in recording files once*/
-  df1101s.playSpecFile(1);
+  df1101s.playSpecFile(0);
   while(1);
   /*Delete the currently-playing file*/
   //df1101s.delCurFile();
