@@ -171,9 +171,9 @@ bool DFRobot_DF1101S::start(){
 
 bool DFRobot_DF1101S::pause(){
    sPacket_t cmd;
-   if(curFunction = MUSIC){
+   if(curFunction == MUSIC){
      cmd = pack("PLAY","PP");
-   }else if(curFunction = RECORD){
+   }else if(curFunction == RECORD){
      cmd = pack("REC","PP");
    }else{
       return false;
