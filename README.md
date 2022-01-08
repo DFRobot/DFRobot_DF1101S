@@ -1,6 +1,14 @@
 # DFRobot_DF1101S
+- [中文版](./README_CN.md)
 
 Wanna buy a simple & practical voice recorder? This one is right for you! The voice recorder module supports 4 controlling modes Arduino, AT command, on-board buttons and ADKEY, and multi-segment voice recording. You can directly press the on-board buttons to record or play voice without using a controller. Moreover, the 16MB storage on the module can store up to 40 minutes recording voice and the recorded files can be copied to your computer via the type-C interface.  
+
+![Product Image](./resources/images/DFR0745.png)
+
+
+## Product Link (https://www.dfrobot.com/product-2185.html)
+    DFR0745: Voice Recorder Module (Breakout)
+
 ## Table of Contents
 
 * [Summary](#summary)
@@ -21,109 +29,159 @@ To use this library, first download the library file, paste it into the \Arduino
 
 ## Methods
 ```C++
+ /**
+   * @fn begin
+   * @brief init function
+   * @param s serial
+   * @return Boolean type, Indicates the initialization result
+   * @retval true The setting succeeded
+   * @retval false Setting failed
+   */
   bool begin(Stream &s);
   
   /**
-   * @brief Set baud rate(Need to power off and restart, power-down save) 
-   * @param 9600,19200,38400,57600,115200
-   * @return true or false
+   * @fn setBaudRate
+   * @brief Set baud rate(Need to power off and restart, power-down save)
+   * @param baud 9600,19200,38400,57600,115200
+   * @return Boolean type, the result of seted
+   * @retval true The setting succeeded
+   * @retval false Setting failed
    */
   bool setBaudRate(uint32_t baud);
 
   /**
-   * @brief Set playback mode
-   * @param ePlayMode_t:SINGLECYCLE,ALLCYCLE,SINGLE
-   * @return true or false
+   * @fn setPlayMode
+   * @brief Set playback mode 
+   * @param mode ePlayMode_t:SINGLECYCLE,ALLCYCLE,SINGLE,RANDOM,FOLDER
+   * @return Boolean type, the result of seted
+   * @retval true The setting succeeded
+   * @retval false Setting failed
    */
   bool setPlayMode(ePlayMode_t mode);
 
   /**
+   * @fn setLED
    * @brief Set indicator LED(Power-down save) 
-   * @param true or false
-   * @return true or false
+   * @param on true or false
+   * @return Boolean type, the result of seted
+   * @retval true The setting succeeded
+   * @retval false Setting failed
    */
   bool setLED(bool on);
   
   /**
-   * @brief Set prompt tone(power-down save) 
-   * @param true or false
-   * @return true or false
+   * @fn setPrompt
+   * @brief Set the prompt tone(Power-down save) 
+   * @param on true or false
+   * @return Boolean type, the result of seted
+   * @retval true The setting succeeded
+   * @retval false Setting failed
    */
   bool setPrompt(bool on);
   
   /**
+   * @fn setVol
    * @brief Set volume 
-   * @param vol:0-30
-   * @return true or false
+   * @param vol 0-30
+   * @return Boolean type, the result of seted
+   * @retval true The setting succeeded
+   * @retval false Setting failed
   */
   bool setVol(uint8_t vol);
   
   /**
+   * @fn switchFunction
    * @brief Set working mode 
-   * @param eFunction_t:MUSIC,RECORD,UFDISK
-   * @return true or false
+   * @param function eFunction_t:MUSIC,RECORD,UFDISK
+   * @return Boolean type, the result of seted
+   * @retval true The setting succeeded
+   * @retval false Setting failed
    */
   bool switchFunction(eFunction_t function);
   
-  //bool operation( );
   /**
+   * @fn next
    * @brief Next 
-   * @return true or false
+   * @return Boolean type, the result of operation
+   * @retval true The setting succeeded
+   * @retval false Setting failed
    */
   bool next();
   
   /**
-   * @brief Last
-   * @return true or false
+   * @fn last
+   * @brief Previous 
+   * @return Boolean type, the result of operation
+   * @retval true The setting succeeded
+   * @retval false Setting failed
    */
   bool last();
   
   /**
-   * @brief Play(in music mode) or Record (in recording mode)
-   * @return true or false
+   * @fn start
+   * @brief Play 
+   * @return Boolean type, the result of operation
+   * @retval true The setting succeeded
+   * @retval false Setting failed
    */
   bool start();
   
   /**
-   * @brief Playing Pause(in music mode) or recording pause(in recording mode)
-   * @return true or false
+   * @fn pause
+   * @brief Pause 
+   * @return Boolean type, the result of operation
+   * @retval true The setting succeeded
+   * @retval false Setting failed
    */
   bool pause();
   
   /**
-   * @brief Save the recorded voice
-   * @return true or false
+   * @fn saveRec
+   * @brief Save the recorded voice 
+   * @return the name of the recorded audio file
    */
   String saveRec();
 
   /**
+   * @fn delCurFile
    * @brief Delete the currently-playing file 
-   * @return true or false
+   * @return Boolean type, the result of operation
+   * @retval true The setting succeeded
+   * @retval false Setting failed
    */
   bool delCurFile();
   
   /**
-   * @brief Play the file of specific path
-   * @param The designated path
+   * @fn playSpecFile
+   * @brief Play file of the specific path 
+   * @param str the name of the audio file to play
+   * @return Boolean type, the result of operation
+   * @retval true The setting succeeded
+   * @retval false Setting failed
    */
-  void playSpecFile(String str);
+  bool playSpecFile(String str);
   
   /**
-   * @brief Play the file of specific number(only valide for the default file name),
-   * @  play the first one if there is no file designated.  
-   * @param File name number: 0-999
+   * @fn playSpecFile
+   * @brief Play the file of specific number, the numbers are arranged according to the sequences the files copied into the U-disk 
+   * @param num file number, can be obtained by getCurFileNumber()
+   * @return Boolean type, the result of operation
+   * @retval true The setting succeeded
+   * @retval false Setting failed
    */
-  void playSpecFile(int16_t num);
+  bool playSpecFile(int16_t num);
 
   /**
-   * @brief Get volume
-   * @return vol
+   * @fn getVol
+   * @brief Get volume 
+   * @return vol volume
    */
   uint8_t getVol();
 
   /**
-   * @brief Get playback mode 
-   * @return ePlayMode_t
+   * @fn getPlayMode
+   * @brief Get palyback mode 
+   * @return ePlayMode_t  Play Mode
    */
   ePlayMode_t getPlayMode();
 ```
@@ -142,9 +200,8 @@ M0        |      √       |              |             |
 
 ## History
 
-- Date 2020-11-26
-- Version V1.0
 
+- 2020/11/26 - Version 1.0.0 released.
 
 ## Credits
 

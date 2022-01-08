@@ -1,6 +1,14 @@
+/*!
+ *@file DFRobot_DF1101S.cpp
+ *@brief Define the basic structure of class DFRobot_DF1101S, the implementation of the basic methods
+ *@copyright   Copyright (c) 2010 DFRobot Co.Ltd (http://www.dfrobot.com)
+ *@license     The MIT license (MIT)
+ *@author [fengli](li.feng@dfrobot.com)
+ *@version  V1.0
+ *@date  2021-10-15
+ *@url https://github.com/DFRobot/DFRobot_DF1101S
+*/
 #include <DFRobot_DF1101S.h>
-
-
 DFRobot_DF1101S::DFRobot_DF1101S(){
 
 }

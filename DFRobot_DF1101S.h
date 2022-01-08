@@ -1,3 +1,15 @@
+/*!
+ *@file DFRobot_DF1101S.h
+ *@brief DFRobot_DF1101S 类的基础结构
+ *@details record audio and play audio
+ *@copyright   Copyright (c) 2010 DFRobot Co.Ltd (http://www.dfrobot.com)
+ *@license     The MIT license (MIT)
+ *@author [fengli](li.feng@dfrobot.com)
+ *@version  V1.0
+ *@date  2021-10-15
+ *@url https://github.com/DFRobot/DFRobot_DF1101S
+*/
+
 #ifndef DFROBOT_DF1101S_H
 #define DFROBOT_DF1101S_H
 
@@ -8,22 +20,33 @@
 class DFRobot_DF1101S
 {
 public:
-
+  /**
+   * @struct eFunction_t
+   * @brief function selection
+   */
   typedef enum{
-    MUSIC = 1,  //Music Mode 
-    RECORD,     //Recording Mode
-    UFDISK,     //Slave Mode
+    MUSIC = 1,  /**<Music Mode */
+    RECORD,    /**<Recording Mode*/
+    UFDISK,    /**<Slave Mode*/
   }eFunction_t;
-  
+
+  /**
+   * @struct sPacket_t
+   * @brief packet definition
+   */
   typedef struct{
    String str;
    uint8_t length;
   }sPacket_t;
-  
+
+  /**
+   * @struct ePlayMode_t
+   * @brief play mode
+   */
   typedef enum{
-    SINGLECYCLE = 1,  //Repeat one song
-    ALLCYCLE,         //Repeat all
-    SINGLE,           //Play one song once
+    SINGLECYCLE = 1,  /**<Repeat one song*/
+    ALLCYCLE,         /**<Repeat all*/
+    SINGLE,           /**<Play one song once*/
     ERROR,
   }ePlayMode_t;
 
@@ -31,109 +54,160 @@ public:
 
   DFRobot_DF1101S();
   //~DFRobot_DF1101S();
+  
+  /**
+   * @fn begin
+   * @brief init function
+   * @param s serial
+   * @return Boolean type, Indicates the initialization result
+   * @retval true The setting succeeded
+   * @retval false Setting failed
+   */
   bool begin(Stream &s);
   
   /**
-   * @brief Set baud rate(Need to power off and restart, power-down save)  
-   * @param 9600,19200,38400,57600,115200
-   * @return true or false
+   * @fn setBaudRate
+   * @brief Set baud rate(Need to power off and restart, power-down save)
+   * @param baud 9600,19200,38400,57600,115200
+   * @return Boolean type, the result of seted
+   * @retval true The setting succeeded
+   * @retval false Setting failed
    */
   bool setBaudRate(uint32_t baud);
 
   /**
-   * @brief Set playback mode
-   * @param ePlayMode_t:SINGLECYCLE,ALLCYCLE,SINGLE
-   * @return true or false
+   * @fn setPlayMode
+   * @brief Set playback mode 
+   * @param mode ePlayMode_t:SINGLECYCLE,ALLCYCLE,SINGLE,RANDOM,FOLDER
+   * @return Boolean type, the result of seted
+   * @retval true The setting succeeded
+   * @retval false Setting failed
    */
   bool setPlayMode(ePlayMode_t mode);
 
   /**
-   * @brief Set indicator(Power-down save) 
-   * @param true or false
-   * @return true or false
+   * @fn setLED
+   * @brief Set indicator LED(Power-down save) 
+   * @param on true or false
+   * @return Boolean type, the result of seted
+   * @retval true The setting succeeded
+   * @retval false Setting failed
    */
   bool setLED(bool on);
   
   /**
-   * @brief Set prompt tone(power-down save)
-   * @param true or false
-   * @return true or false
+   * @fn setPrompt
+   * @brief Set the prompt tone(Power-down save) 
+   * @param on true or false
+   * @return Boolean type, the result of seted
+   * @retval true The setting succeeded
+   * @retval false Setting failed
    */
   bool setPrompt(bool on);
   
   /**
+   * @fn setVol
    * @brief Set volume 
-   * @param vol:0-30
-   * @return true or false
+   * @param vol 0-30
+   * @return Boolean type, the result of seted
+   * @retval true The setting succeeded
+   * @retval false Setting failed
   */
   bool setVol(uint8_t vol);
   
   /**
+   * @fn switchFunction
    * @brief Set working mode 
-   * @param eFunction_t:MUSIC,RECORD,UFDISK
-   * @return true or false
+   * @param function eFunction_t:MUSIC,RECORD,UFDISK
+   * @return Boolean type, the result of seted
+   * @retval true The setting succeeded
+   * @retval false Setting failed
    */
   bool switchFunction(eFunction_t function);
   
-  //bool operation( );
   /**
+   * @fn next
    * @brief Next 
-   * @return true or false
+   * @return Boolean type, the result of operation
+   * @retval true The setting succeeded
+   * @retval false Setting failed
    */
   bool next();
   
   /**
-   * @brief Last 
-   * @return true or false
+   * @fn last
+   * @brief Previous 
+   * @return Boolean type, the result of operation
+   * @retval true The setting succeeded
+   * @retval false Setting failed
    */
   bool last();
   
   /**
-   * @brief Play(music mode) or record(recording mode) 
-   * @return true or false
+   * @fn start
+   * @brief Play 
+   * @return Boolean type, the result of operation
+   * @retval true The setting succeeded
+   * @retval false Setting failed
    */
   bool start();
   
   /**
-   * @brief Playing pause(in music mode) or recording pause(in recording mode)
-   * @return true or false
+   * @fn pause
+   * @brief Pause 
+   * @return Boolean type, the result of operation
+   * @retval true The setting succeeded
+   * @retval false Setting failed
    */
   bool pause();
   
   /**
+   * @fn saveRec
    * @brief Save the recorded voice 
-   * @return true or false
+   * @return the name of the recorded audio file
    */
   String saveRec();
 
   /**
-   * @brief Delete the currently-playing file  
-   * @return true or false
+   * @fn delCurFile
+   * @brief Delete the currently-playing file 
+   * @return Boolean type, the result of operation
+   * @retval true The setting succeeded
+   * @retval false Setting failed
    */
   bool delCurFile();
   
   /**
-   * @brief Play the file of specific path 
-   * @param The designated path 
+   * @fn playSpecFile
+   * @brief Play file of the specific path 
+   * @param str the name of the audio file to play
+   * @return Boolean type, the result of operation
+   * @retval true The setting succeeded
+   * @retval false Setting failed
    */
   bool playSpecFile(String str);
   
   /**
-   * @brief Play the file of specific number(only valid for the default file name),
-   * @ play the first one if there is no file designated. 
-   * @param File number: 0-999
+   * @fn playSpecFile
+   * @brief Play the file of specific number, the numbers are arranged according to the sequences the files copied into the U-disk 
+   * @param num file number, can be obtained by getCurFileNumber()
+   * @return Boolean type, the result of operation
+   * @retval true The setting succeeded
+   * @retval false Setting failed
    */
   bool playSpecFile(int16_t num);
 
   /**
+   * @fn getVol
    * @brief Get volume 
-   * @return vol
+   * @return vol volume
    */
   uint8_t getVol();
 
   /**
-   * @brief Get playback mode 
-   * @return ePlayMode_t
+   * @fn getPlayMode
+   * @brief Get palyback mode 
+   * @return ePlayMode_t  Play Mode
    */
   ePlayMode_t getPlayMode();
 private:

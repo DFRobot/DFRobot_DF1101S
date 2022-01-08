@@ -1,15 +1,14 @@
 /*!
  * @file record.ino
  * @brief Recording
- * @n Experiment Phenomenon:Power on the module then it enters the recording mode. 
+ * @n details Phenomenon:Power on the module then it enters the recording mode. 
  * @n                       Start recording after 2 seconds and save the recorded voice file 5 seconds later. 
  * @n                       Print the file name repeatedly at the serial port.
  * @copyright   Copyright (c) 2010 DFRobot Co.Ltd (http://www.dfrobot.com)
- * @licence     The MIT License (MIT)
+ * @License     The MIT License (MIT)
  * @author [fengli](li.feng@dfrobot.com)
  * @version  V1.0
  * @date  2020-07-16
- * @get from https://www.dfrobot.com
  * @url https://github.com/DFRobot/DFRobot_DF1101S
  */
 #include <DFRobot_DF1101S.h>
