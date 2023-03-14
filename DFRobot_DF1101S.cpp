@@ -228,6 +228,7 @@ bool DFRobot_DF1101S::playSpecFile(String str){
    sPacket_t cmd;
    cmd = pack("PLAYFILE",str);
    writeATCommand(cmd.str,cmd.length);
+   pauseFlag = 1;
    if(readAck() == "OK\r\n"){
     return true;
    } else{
@@ -239,6 +240,7 @@ bool DFRobot_DF1101S::playSpecFile(int16_t num){
    sPacket_t cmd;
    cmd = pack("PLAYFILE",String(num));
    writeATCommand(cmd.str,cmd.length);
+   pauseFlag = 1;
    if(readAck() == "OK\r\n"){
     return true;
    } else{
