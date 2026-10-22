@@ -56,7 +56,7 @@ DFRobot_DF1101S::ePlayMode_t DFRobot_DF1101S::getPlayMode(){
    cmd = pack("PLAYMODE","?");
    writeATCommand(cmd.str,cmd.length);
    String str = readAck(13);
-   playMode = str[10];
+   playMode = String(str[10]);
    //Serial.println(str);
    if(str[11] == '\r'  && str[12] == '\n')
      return (ePlayMode_t)atoi(playMode.c_str());
