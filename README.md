@@ -202,6 +202,7 @@ M0        |      √       |              |             |
 
 
 - 2020/11/26 - Version 1.0.0 released.
+- 2026/10/22 - Version 1.0.1 released. Explicitly convert the play mode character to String in getPlayMode() (fixes ambiguous conversion build error on megaAVR boards such as Nano Every).
 
 ## Credits
 
